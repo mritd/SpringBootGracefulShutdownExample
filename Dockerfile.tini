@@ -1,0 +1,12 @@
+FROM eclipse-temurin:11-jdk
+
+RUN set -e \
+    && apt update \
+    && apt install tini psmisc -y
+
+COPY entrypoint.bad.sh /
+COPY target/SpringBootGracefulShutdownExample-0.0.1-SNAPSHOT.jar /
+
+ENTRYPOINT ["tini", "-vvv", "--"]
+
+CMD ["bash", "/entrypoint.bad.sh"]

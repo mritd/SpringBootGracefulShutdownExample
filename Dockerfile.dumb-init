@@ -1,0 +1,12 @@
+FROM eclipse-temurin:11-jdk
+
+RUN set -e \
+    && apt update \
+    && apt install dumb-init -y
+
+COPY entrypoint.bad.sh /
+COPY target/SpringBootGracefulShutdownExample-0.0.1-SNAPSHOT.jar /
+
+ENTRYPOINT ["dumb-init", "--"]
+
+CMD ["bash", "/entrypoint.bad.sh"]

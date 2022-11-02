@@ -1,0 +1,6 @@
+FROM eclipse-temurin:11-jdk
+
+COPY entrypoint.bad.sh /
+COPY target/SpringBootGracefulShutdownExample-0.0.1-SNAPSHOT.jar /
+
+CMD ["bash", "-c", "java -jar /SpringBootGracefulShutdownExample-0.0.1-SNAPSHOT.jar"]
